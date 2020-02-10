@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: serif;
+}
+
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+@media print {
+  .sheet {
+    width: 100%;
+    min-height: 297mm;
+  }
+  .sheet:not(:last-of-type) {
+    page-break-after: always;
+  }
+}
+
+.sheet {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.sheet__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date,
+.author {
+  text-align: center;
+}
+
+.member-list,
+.member-list__foot {
+  list-style: none;
+  padding: 0;
+}
+
+.member-list {
+  counter-reset: member;
+  text-align: center;
+}
+.member-list__foot {
+  counter-reset: member-foot;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 0.75em;
+}
+
+.member-list--item {
+  display: inline-block;
+}
+
+.member-list__foot--item {
+  position: relative;
+}
+
+.member-list--item::after {
+  counter-increment: member;
+  content: "*" counter(member);
+  font-size: 0.5em;
+}
+.member-list__foot--item::before {
+  counter-increment: member-foot;
+  content: "*" counter(member-foot);
+  display: inline-block;
+  width: 3em;
+}
+
+table {
+  margin: 1em auto;
+}
+
+:any-link {
+  color: #007af5;
+}
+
+table,
+th,
+td {
+  border: solid 1px;
+  border-collapse: collapse;
+}
+
+.resp {
+  text-align: right;
+}
+.resp::before {
+  content: "文責: ";
+}
+
+.fig {
+  width: 70%;
+  max-height: 100mm;
+  margin: 1em 15%;
+  object-fit: contain;
+}
